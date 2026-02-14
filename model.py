@@ -50,3 +50,23 @@ class SimpleCNN(nn.Module):
             nn.Linear(128, num_classes) # [B, 128] -> [B, num_classes]
         )
 
+    def forward(self, x):
+        x = self.features(x)
+        x = self.pool(x)
+        x = self.classifier(x)
+        return x
+
+
+
+    # Use BCELoss because we need binary decisions, even though it's multi-label
+    # 18 yes/no questions get asked simultaneously 
+    # Afterwards, sigmoid is used to convert logits into probabilities
+    # Sigmoid is used because multiple classes can also be true
+
+    # The CE Loss formula comes from the KL divergence, which is a natural measure of distance between distributions,
+    # in our case, we want to measure the distance between the true class given our input between the predicted class given the input
+    # But to do this, you need to apply a sigmoid function to convert logits into probabilities.
+
+    
+
+
