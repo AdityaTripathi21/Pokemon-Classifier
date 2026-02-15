@@ -14,9 +14,9 @@ print(files[:20])
 
 # Must implement len and get item
 class PokemonDataset(Dataset):
-    def __init__(self, csv_path, images_dir, transform=None):
+    def __init__(self, img_df, images_dir, transform=None):
         super().__init__()
-        self.df = pd.read_csv(csv_path)
+        self.df = img_df
         self.images_dir = images_dir
         self.transform = transform
 
