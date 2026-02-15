@@ -38,6 +38,7 @@ test_transform = transforms.Compose([
 
 df = pd.read_csv("data/pokemon.csv")
 
+
 train_df, test_df = train_test_split(
     df, test_size=0.2, train_size=0.8, 
     random_state=42, stratify=df["Type1"])  # stratify ensures that both train and test data have the same proportion of Type1,
@@ -133,8 +134,12 @@ def validate(model, dataloader, loss_function, device):
                 running_loss += loss.item()
             
                 # Calculate accuracy
-                predictions = (torch.sigmoid(outputs) > 0.5).float()
-                correct += (predictions == labels).sum().item()
+                predictions = (torch.sigmoid(outputs) > 0.3).float()    # output is raw logits. 0.5 is threshold
+
+                correct += (predictions == labels).sum().item()  # predictions == labels creates a True/False tensor
+                                                                            # sum counts how many samples in each batch are correct
+                                                                            # item converts tensor to scalar
+
                 total += labels.numel()  # Total number of predictions (batch_size * 18)
     
         avg_loss = running_loss / len(dataloader)

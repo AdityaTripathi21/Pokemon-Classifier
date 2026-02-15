@@ -47,7 +47,7 @@ class SimpleCNN(nn.Module):
             nn.Linear(64, 128), # [B, 64] -> [B, 128]
             nn.ReLU(),
             nn.Dropout(p=0.2),
-            nn.Linear(128, num_classes) # [B, 128] -> [B, num_classes]
+            nn.Linear(128, num_classes) # [B, 128] -> [B, num_classes], remember logits not probabilities
         )
 
     def forward(self, x):
@@ -67,6 +67,6 @@ class SimpleCNN(nn.Module):
     # in our case, we want to measure the distance between the true class given our input between the predicted class given the input
     # But to do this, you need to apply a sigmoid function to convert logits into probabilities.
 
-    
+
 
 
