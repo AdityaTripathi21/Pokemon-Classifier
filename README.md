@@ -1,0 +1,1 @@
+I built a CNN from scratch in PyTorch with custom architecture that consists of 3 convolutional blocks and a classifier head. The model is trained to classify pokemon types from looking at images. I used https://www.kaggle.com/datasets/vishalsubbiah/pokemon-images-and-types/code for my dataset, which consists of 809 images. I ended up achieving a 91.8% test accuracy. 
